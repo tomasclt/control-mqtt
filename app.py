@@ -2,6 +2,7 @@ import paho.mqtt.client as paho
 import time
 import streamlit as st
 import json
+values = 0.0
 
 def on_publish(client,userdata,result):             #create function for callback
     print("el dato ha sido publicado \n")
@@ -20,7 +21,7 @@ broker="157.230.214.127"
 port=1883
 client1= paho.Client("GIT-HUB")
 client1.on_message = on_message
-values = 0.0
+
 
 
 st.title("MQTT Control")
