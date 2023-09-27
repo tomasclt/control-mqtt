@@ -33,7 +33,7 @@ if st.button('ON'):
     client1.connect(broker,port)    
     message =json.dumps({"Act1":act1,"Analog": float(values)})
     ret= client1.publish("cmqtt", message)
-    return act1
+ 
     #client1.subscribe("Sensores")
     
     
@@ -47,7 +47,7 @@ if st.button('OFF'):
     client1.connect(broker,port)                                    
     message =json.dumps({"Act1":act1,"Analog": float(values)})
     ret= client1.publish("cmqtt", message)
-    return act1
+  
     
 else:
     st.write('')
@@ -61,7 +61,7 @@ if st.button('Enviar valor analógico'):
     client1.connect(broker,port)   
     message =json.dumps({"Act1":act1,"Analog": float(values)})
     ret= client1.publish("cmqtt", message)
-    return values
+    
  
 else:
     st.write('')
