@@ -32,7 +32,6 @@ if st.button('ON'):
     client1= paho.Client("GIT-HUB")                           
     client1.on_publish = on_publish                          
     client1.connect(broker,port)  
-    values = st.slider('Selecciona el rango de valores',0.0, 100.0)
     message =json.dumps({"Act1":act1,"Analog": float(values)})
     ret= client1.publish("cmqtt", message)
  
@@ -47,7 +46,6 @@ if st.button('OFF'):
     client1= paho.Client("GIT-HUB")                           
     client1.on_publish = on_publish                          
     client1.connect(broker,port)  
-    values = st.slider('Selecciona el rango de valores',0.0, 100.0)
     message =json.dumps({"Act1":act1,"Analog": float(values)})
     ret= client1.publish("cmqtt", message)
   
