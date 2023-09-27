@@ -27,22 +27,26 @@ client1.on_message = on_message
 st.title("MQTT Control")
 
 if st.button('ON'):
+    act1="ON"
     client1= paho.Client("GIT-HUB")                           
     client1.on_publish = on_publish                          
     client1.connect(broker,port)    
-    message =json.dumps({"Act1":"ON","Analog": float(values)})
+    message =json.dumps({"Act1":act1,"Analog": float(values)})
     ret= client1.publish("cmqtt", message)
     #client1.subscribe("Sensores")
+    return act1
     
 else:
     st.write('')
 
 if st.button('OFF'):
+    act1="OFF"
     client1= paho.Client("GIT-HUB")                           
     client1.on_publish = on_publish                          
     client1.connect(broker,port)                                    
-    message =json.dumps({"Act1":"OFF","Analog": float(values)})
+    message =json.dumps({"Act1":act1,"Analog": float(values)})
     ret= client1.publish("cmqtt", message)
+    return act1
     
 else:
     st.write('')
@@ -54,8 +58,9 @@ if st.button('Enviar valor analógico'):
     client1= paho.Client("GIT-HUB")                           
     client1.on_publish = on_publish                          
     client1.connect(broker,port)   
-    message =json.dumps({"Analog": float(values)})
+    message =json.dumps({"Act1":act1,"Analog": float(values)})
     ret= client1.publish("cmqtt", message)
+    return values
  
 else:
     st.write('')
