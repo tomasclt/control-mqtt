@@ -1,9 +1,6 @@
 import paho.mqtt.client as paho
 import time
-from IPython.display import Audio
 import streamlit as st
-import threading
-import queue
 
 def on_publish(client,userdata,result):             #create function for callback
     print("el dato ha sido publicado \n")
@@ -14,9 +11,7 @@ def on_message(client, userdata, message):
     time.sleep(2)
     message_received=str(message.payload.decode("utf-8"))
     st.write(message_received)
-    if(message_received=="Sonido"):
-       sound_file = 'hum_high.mp3'
-       display(Audio(sound_file, autoplay=True))
+
         
 
 
@@ -29,13 +24,12 @@ client1.on_message = on_message
 
 st.title("MQTT Control")
 
-
 if st.button('ON'):
     client1= paho.Client("GIT-HUB")                           
     client1.on_publish = on_publish                          
     client1.connect(broker,port)                                 
-    ret= client1.publish("deteccion","ON") 
-    client1.subscribe("Sensores")
+    ret= client1.publish("cmqtt","ON") 
+    #client1.subscribe("Sensores")
     
 else:
     st.write('')
@@ -44,8 +38,8 @@ if st.button('OFF'):
     client1= paho.Client("GIT-HUB")                           
     client1.on_publish = on_publish                          
     client1.connect(broker,port)                                 
-    ret= client1.publish("deteccion","OFF")
-    client1.subscribe("Sensores")
+    ret= client1.publish("cmqtt","OFF")
+    
     
 else:
     st.write('')
@@ -56,9 +50,14 @@ st.write('Values:', values)
 if st.button('Enviar valor analógico'):
     client1= paho.Client("GIT-HUB")                           
     client1.on_publish = on_publish                          
-    client1.connect(broker,port)                                 
-    ret= client1.publish("deteccion", values)
+    client1.connect(broker,port)   
+    Dictionary ={Analog: values}
+    json_string = json.dumps(Dictionary)
+    ret= client1.publish("cmqtt", json_string)
  
-    
 else:
     st.write('')
+
+
+
+
