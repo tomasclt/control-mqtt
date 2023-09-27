@@ -52,7 +52,7 @@ if st.button('Enviar valor analógico'):
     client1= paho.Client("GIT-HUB")                           
     client1.on_publish = on_publish                          
     client1.connect(broker,port)   
-    message =json.dumps({"Analog": values})
+    message =json.dumps({"Analog": float(values)})
     ret= client1.publish("cmqtt", message)
  
 else:
