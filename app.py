@@ -33,8 +33,9 @@ if st.button('ON'):
     client1.connect(broker,port)    
     message =json.dumps({"Act1":act1,"Analog": float(values)})
     ret= client1.publish("cmqtt", message)
-    #client1.subscribe("Sensores")
     return act1
+    #client1.subscribe("Sensores")
+    
     
 else:
     st.write('')
