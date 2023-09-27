@@ -29,7 +29,7 @@ if st.button('ON'):
     client1= paho.Client("GIT-HUB")                           
     client1.on_publish = on_publish                          
     client1.connect(broker,port)    
-    message =json.dumps({"Act1":"ON"})
+    message =json.dumps({"Act1":"ON","Analog": float(values)})
     ret= client1.publish("cmqtt", message)
     #client1.subscribe("Sensores")
     
@@ -40,7 +40,7 @@ if st.button('OFF'):
     client1= paho.Client("GIT-HUB")                           
     client1.on_publish = on_publish                          
     client1.connect(broker,port)                                    
-    message =json.dumps({"Act1":"OFF"})
+    message =json.dumps({"Act1":"OFF","Analog": float(values)})
     ret= client1.publish("cmqtt", message)
     
 else:
