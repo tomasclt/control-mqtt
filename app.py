@@ -28,8 +28,9 @@ st.title("MQTT Control")
 if st.button('ON'):
     client1= paho.Client("GIT-HUB")                           
     client1.on_publish = on_publish                          
-    client1.connect(broker,port)                                 
-    ret= client1.publish("cmqtt","ON") 
+    client1.connect(broker,port)    
+    message =json.dumps({"Act1":"ON"})
+    ret= client1.publish("cmqtt", message)
     #client1.subscribe("Sensores")
     
 else:
@@ -38,9 +39,9 @@ else:
 if st.button('OFF'):
     client1= paho.Client("GIT-HUB")                           
     client1.on_publish = on_publish                          
-    client1.connect(broker,port)                                 
-    ret= client1.publish("cmqtt","OFF")
-    
+    client1.connect(broker,port)                                    
+    message =json.dumps({"Act1":"OFF"})
+    ret= client1.publish("cmqtt", message)
     
 else:
     st.write('')
