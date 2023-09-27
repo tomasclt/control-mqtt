@@ -20,7 +20,7 @@ broker="157.230.214.127"
 port=1883
 client1= paho.Client("GIT-HUB")
 client1.on_message = on_message
-
+values =0.0
 
 
 st.title("MQTT Control")
