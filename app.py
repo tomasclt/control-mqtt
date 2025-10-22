@@ -187,4 +187,4 @@ card_end()
 # =========================
 # NOTA
 # =========================
-st.caption("UI dark, limpia y legible · Animaciones discretas · Arquitectura original de publicación MQTT intacta.")
+st.caption()
